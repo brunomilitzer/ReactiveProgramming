@@ -11,4 +11,4 @@ Profiles Demo
 **Specifications**
 
 * Java 11
-* Spring Boot 2.5.3
+* Spring Boot 2.5.2
