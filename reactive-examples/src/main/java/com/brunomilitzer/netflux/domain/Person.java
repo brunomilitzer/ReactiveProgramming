@@ -1,4 +1,4 @@
-package com.brunomilitzer.reactiveprogramming.domain;
+package com.brunomilitzer.netflux.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {
+
     private Integer id;
     private String firstName;
     private String lastName;

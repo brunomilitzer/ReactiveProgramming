@@ -1,10 +1,10 @@
-package com.brunomilitzer.reactiveprogramming;
+package com.brunomilitzer.netflux;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ReactiveExamplesApplicationTests {
+class NetfluxApplicationTests {
 
     @Test
     void contextLoads() {

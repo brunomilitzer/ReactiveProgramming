@@ -1,6 +1,6 @@
-package com.brunomilitzer.reactiveprogramming.repository;
+package com.brunomilitzer.netflux.repositories;
 
-import com.brunomilitzer.reactiveprogramming.domain.Person;
+import com.brunomilitzer.netflux.domain.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;

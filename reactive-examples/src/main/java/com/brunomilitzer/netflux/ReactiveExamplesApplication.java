@@ -1,4 +1,4 @@
-package com.brunomilitzer.reactiveprogramming;
+package com.brunomilitzer.netflux;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ReactiveExamplesApplication {
 
-    public static void main( String[] args ) {
+    public static void main( final String[] args ) {
 
         SpringApplication.run( ReactiveExamplesApplication.class, args );
     }

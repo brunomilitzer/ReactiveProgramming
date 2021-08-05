@@ -1,6 +1,6 @@
-package com.brunomilitzer.reactiveprogramming.repository;
+package com.brunomilitzer.netflux.repositories;
 
-import com.brunomilitzer.reactiveprogramming.domain.Person;
+import com.brunomilitzer.netflux.domain.Person;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

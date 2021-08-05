@@ -5,6 +5,7 @@
 **_Projects_**
 
 1. [Reactive Examples](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/reactive-examples)
+2. [Netflux](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/netflux)
 
 Profiles Demo
 
