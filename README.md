@@ -6,6 +6,7 @@
 
 1. [Reactive Examples](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/reactive-examples)
 2. [Netflux](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/netflux)
+3. [Reactive Beer Client](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/reactive-beer-client)
 
 Profiles Demo
 
