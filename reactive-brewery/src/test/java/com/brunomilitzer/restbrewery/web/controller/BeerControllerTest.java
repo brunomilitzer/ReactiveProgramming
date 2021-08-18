@@ -12,10 +12,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
@@ -44,7 +44,7 @@ class BeerControllerTest {
     void getBeerByUpc() {
 
         given( this.beerService.getByUpc( any() ) )
-                .willReturn( this.validBeer );
+                .willReturn( Mono.just( this.validBeer ) );
 
         this.webTestClient.get().uri( "/api/v1/beerUpc/" + this.validBeer.getUpc() )
                 .accept( MediaType.APPLICATION_JSON )
@@ -60,7 +60,7 @@ class BeerControllerTest {
         final List<BeerDto> beerList = Arrays.asList( this.validBeer );
 
         final BeerPagedList beerPagedList = new BeerPagedList( beerList, PageRequest.of( 1, 1 ), beerList.size() );
-        given( this.beerService.listBeers( any(), any(), any(), any() ) ).willReturn( beerPagedList );
+        given( this.beerService.listBeers( any(), any(), any(), any() ) ).willReturn( Mono.just( beerPagedList ) );
 
         this.webTestClient.get().uri( "/api/v1/beer" ).accept( MediaType.APPLICATION_JSON )
                 .exchange().expectStatus().isOk()
@@ -70,9 +70,9 @@ class BeerControllerTest {
     @Test
     void getBeerById() {
 
-        final UUID beerId = UUID.randomUUID();
+        final Integer beerId = 1;
         given( this.beerService.getById( any(), any() ) )
-                .willReturn( this.validBeer );
+                .willReturn( Mono.just( this.validBeer ) );
 
         this.webTestClient.get().uri( "/api/v1/beer/" + beerId )
                 .accept( MediaType.APPLICATION_JSON )
