@@ -1,10 +1,62 @@
 package com.brunomilitzer.reactiveprogramming;
 
+import com.brunomilitzer.reactiveprogramming.model.Quote;
+import com.brunomilitzer.reactiveprogramming.web.QuoteRouteConfig;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
-@SpringBootTest
+import java.util.concurrent.CountDownLatch;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest( webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT )
 class StreamingStockQuoteServiceApplicationTests {
+
+    @Autowired
+    private WebTestClient webTestClient;
+
+    @Test
+    void fetchQuotes() {
+
+        this.webTestClient.get()
+                .uri( QuoteRouteConfig.QUOTES_PATH + "?size=20" )
+                .accept( MediaType.APPLICATION_JSON )
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType( MediaType.APPLICATION_JSON )
+                .expectBodyList( Quote.class )
+                .hasSize( 20 )
+                .consumeWith( allQuotes -> {
+                    assertThat( allQuotes.getResponseBody() )
+                            .allSatisfy( quote -> assertThat( quote.getPrice() ).isPositive() );
+                    assertThat( allQuotes.getResponseBody() ).hasSize( 20 );
+                } );
+
+    }
+
+    @Test
+    void streamQuotes() throws InterruptedException {
+        // set Countdown latch to 10
+        final CountDownLatch countDownLatch = new CountDownLatch( 10 );
+
+        this.webTestClient.get()
+                .uri( QuoteRouteConfig.QUOTES_PATH )
+                .accept( MediaType.APPLICATION_NDJSON )
+                .exchange()
+                .returnResult( Quote.class )
+                .getResponseBody()
+                .take( 10 )
+                .subscribe( quote -> {
+                    assertThat( quote.getPrice() ).isPositive();
+
+                    countDownLatch.countDown();
+                } );
+
+        countDownLatch.await();
+    }
 
     @Test
     void contextLoads() {
