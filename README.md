@@ -8,6 +8,7 @@
 2. [Netflux](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/netflux)
 3. [Reactive Beer Client](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/reactive-beer-client)
 4. [Reactive Brewery](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/reactive-brewery)
+5. [Streaming Stock Quote Service](https://github.com/brunomilitzer/ReactiveProgramming/tree/master/streaming-stock-quote-service)
 
 Profiles Demo
 
