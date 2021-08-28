@@ -2,6 +2,7 @@ package com.brunomilitzer.restbrewery.services;
 
 import com.brunomilitzer.restbrewery.domain.Beer;
 import com.brunomilitzer.restbrewery.repositories.BeerRepository;
+import com.brunomilitzer.restbrewery.web.controller.NotFoundException;
 import com.brunomilitzer.restbrewery.web.mappers.BeerMapper;
 import com.brunomilitzer.restbrewery.web.model.BeerDto;
 import com.brunomilitzer.restbrewery.web.model.BeerPagedList;
@@ -78,6 +79,14 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
+    public Mono<BeerDto> saveNewBeerMono( final Mono<BeerDto> beerDto ) {
+
+        return beerDto.map( this.beerMapper::beerDtoToBeer )
+                .flatMap( this.beerRepository::save )
+                .map( this.beerMapper::beerToBeerDto );
+    }
+
+    @Override
     public Mono<BeerDto> updateBeer( final Integer beerId, final BeerDto beerDto ) {
 
         return this.beerRepository.findById( beerId )
@@ -109,6 +118,14 @@ public class BeerServiceImpl implements BeerService {
     public void deleteBeerById( final Integer beerId ) {
 
         this.beerRepository.deleteById( beerId ).subscribe();
+    }
+
+    @Override
+    public Mono<Void> reactiveDeleteById( final Integer beerId ) {
+
+        return this.beerRepository.findById( beerId )
+                .switchIfEmpty( Mono.error( new NotFoundException() ) )
+                .map( Beer::getId ).flatMap( this.beerRepository::deleteById );
     }
 
 }
