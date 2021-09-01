@@ -16,3 +16,11 @@ Profiles Demo
 
 * Java 11
 * Spring Boot 2.5.2
+* MongoDB
+    - Run Mongo DB
+        * docker run -d --name my-mongo -p 27017:27017 mongo
+* RabbitMQ
+    - Run Rabbit MQ
+        * docker run -d -p 5672:5672 --name my-rabbit rabbitmq
+        * default credentials:
+            - guest/guest

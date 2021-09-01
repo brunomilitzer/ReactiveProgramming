@@ -1,5 +1,7 @@
 package com.brunomilitzer.reactiveprogramming.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,7 +10,9 @@ import java.math.MathContext;
 import java.time.Instant;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Quote {
 
     private static final MathContext MATH_CONTEXT = new MathContext( 2 );
